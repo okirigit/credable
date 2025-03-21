@@ -1,0 +1,6 @@
+# spring boot management server instance properties
+spring:
+  application:
+    name: credable-interview
+  profiles:
+    active: dev
