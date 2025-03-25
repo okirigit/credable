@@ -57,8 +57,8 @@ scoring:
     create-client: createClient
     url: http://102.220.169.7
     name: "Okiri George cradable"
-    username: "george"
-    password: "george123"
+    username: george
+    password: george123
 
 cbs:
   auth:

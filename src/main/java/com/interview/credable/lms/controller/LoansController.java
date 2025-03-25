@@ -48,7 +48,8 @@ public class LoansController {
     }
 
     @GetMapping("/status/{customerNumber}")
-    public ResponseEntity<?> getLoanStatus(@PathVariable String customerNumber) {
+    public ResponseEntity<?> getLoanStatus(@RequestParam(value = "customerNumber", required=false) String customerNumber,
+                                           @RequestParam(value = "loanId", required=false) String loanId) {
         return loanService.getStatus(customerNumber);
     }
 }
