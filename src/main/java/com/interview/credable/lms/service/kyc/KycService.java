@@ -1,10 +1,9 @@
-package com.interview.credable.lms.service;
+package com.interview.credable.lms.service.kyc;
 
 
-import com.interview.credable.lms.domain.ScoreResponse;
-import com.interview.credable.lms.utils.ResponseObject;
+import io.credable.cbs.customer.Customer;
 
-public interface ScoringService {
+public interface KycService {
 
     /**
      * Initiates the scoring process for a given customer.
@@ -12,7 +11,7 @@ public interface ScoringService {
      * @param customerNumber The customer's number.
      * @return A token representing the initiated scoring process.
      */
-    String initiateScoring(String customerNumber);
+    Customer getCustomerDetails(String customerNumber);
 
     /**
      * Queries the scoring engine for the score using the provided token.
@@ -20,7 +19,5 @@ public interface ScoringService {
      * @param token The token obtained from the initiateScoring step.
      * @return The scoring response, or null if the score is not available after retries.
      */
-    ScoreResponse getScore(String token);
 
-    ResponseObject getStatus(String token);
 }

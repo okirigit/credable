@@ -1,11 +1,11 @@
-package com.interview.credable.lms.service;
+package com.interview.credable.lms.service.cbs.transactions;
 
 
-import io.credable.cbs.customer.Customer;
+import io.credable.cbs.transaction.TransactionData;
 
 import java.util.List;
 
-public interface KycService {
+public interface TransactionDataService {
 
     /**
      * Initiates the scoring process for a given customer.
@@ -13,7 +13,7 @@ public interface KycService {
      * @param customerNumber The customer's number.
      * @return A token representing the initiated scoring process.
      */
-    Customer getCustomerDetails(String customerNumber);
+    List<TransactionData> transactionData(String customerNumber);
 
     /**
      * Queries the scoring engine for the score using the provided token.

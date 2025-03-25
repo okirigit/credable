@@ -1,4 +1,4 @@
-package com.interview.credable.lms.infrastructure.cbs.transaction;
+package com.interview.credable.lms.service.cbs.transactions;
 
 
 import io.credable.cbs.transaction.TransactionDataPort;
@@ -11,13 +11,11 @@ import org.springframework.stereotype.Service;
 public class TransactionDataClient {
 
     public TransactionsResponse getTransactionData(String customerNumber) {
-
         TransactionDataPortService service = new TransactionDataPortService();
         TransactionDataPort port = service.getTransactionDataPortSoap11();
         TransactionsRequest request = new TransactionsRequest();
         request.setCustomerNumber(customerNumber);
         TransactionsResponse response = port.transactions(request);
-
         return response;
     }
 

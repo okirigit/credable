@@ -1,16 +1,16 @@
-package com.interview.credable.lms.service;
+package com.interview.credable.lms.service.cbs.transactions;
 
 
 import com.interview.credable.lms.config.ScoringServiceClient;
 
-import com.interview.credable.lms.infrastructure.cbs.transaction.TransactionDataClient;
 import io.credable.cbs.transaction.TransactionData;
 import io.credable.cbs.transaction.TransactionsResponse;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Slf4j
 @Service
 public class TransactionDataServiceImpl implements TransactionDataService {
 
@@ -32,12 +32,10 @@ public class TransactionDataServiceImpl implements TransactionDataService {
 
         if (response != null && response.getTransactions() != null) {
             response.getTransactions().forEach(transaction -> {
-                System.out.println("Account Number: " + transaction.getAccountNumber());
-                System.out.println("Amount: " + transaction.getAlternativechanneltrnscrAmount());
-
+                log.info("Found transaction {}", transaction);
             });
         } else {
-            System.out.println("No transactions found or error occurred.");
+            log.info("No transactions found or error occurred.:::::::::::::::");
         }
         return response.getTransactions();
     }

@@ -18,6 +18,30 @@ server:
   port: 8080
      
 spring:
+  activemq:
+    packages:
+      trust-all: true
+    pool:
+      enabled: true
+      max-connections: 200
+      idle-timeout: 30
+      max-sessions-per-connection: 500
+      block-if-full: false
+      time-between-expiration-check: 100
+    #broker-url: tcp://localhost:61616
+    broker-url: tcp://localhost:61616
+    user: admin
+    password: admin
+    loansRequestQueue: LOANS-QUEUE
+    scoreRequestQueue: SCORE-REQUESTS-QUEUE
+    maxRetries: 5
+  jackson:
+    default-property-inclusion: non_null
+
+  data:
+    mongodb:
+      uri: mongodb+srv://credable:credable2025@credable.huset.mongodb.net/?retryWrites=true&w=majority&appName=credable
+      database: credable
 
   application:
     name: credable-interview
@@ -25,17 +49,17 @@ spring:
   config: 
     activate:
       on-profile: dev
-  #active mq
+
+
 
 scoring:
   service:
     baseurl : https://credable.free.beeceptor.com/
-    client-token: xxxxxxx
     create-client: createClient
-    url: "http://102.220.169.7"
+    url: http://102.220.169.7
     name: "OkiriGeorge cradable"
-    username: "okiri123"
-    password: "okiri123"
+    username: george
+    password: george123
 
 cbs:
   auth:

@@ -1,50 +1,59 @@
 package com.interview.credable.lms.controller;
 
 
+import com.interview.credable.lms.config.ScoringServiceClient;
+import com.interview.credable.lms.domain.Customer;
 import com.interview.credable.lms.domain.Loan;
-import com.interview.credable.lms.service.ScoringService;
+import com.interview.credable.lms.service.LoanService;
+import com.interview.credable.lms.service.UserService;
 import com.interview.credable.lms.utils.AmqMessageProducer;
 import com.interview.credable.lms.utils.ResponseObject;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
+@Slf4j
 @RestController
 @RequestMapping("api/v1/loans")
 public class LoansController {
 
-    private final ScoringService loanApplicationService;
+    private final ScoringServiceClient scoringServiceClient;
+    private final UserService userService;
+    private final LoanService loanService;
 
     private final AmqMessageProducer amqMessageProducer;
 
     @Autowired
-    public LoansController(ScoringService loanApplicationService,
-                           ScoringService scoringService,
+    public LoansController(ScoringServiceClient scoringServiceClient,
+                           UserService userService, LoanService loanService,
                            AmqMessageProducer amqMessageProducer) {
-        this.loanApplicationService = loanApplicationService;
+        this.scoringServiceClient = scoringServiceClient;
+        this.userService = userService;
+        this.loanService = loanService;
 
         this.amqMessageProducer = amqMessageProducer;
     }
 
-
-    @PostMapping("/request")
-    public ResponseEntity<String> requestLoan(@RequestBody Loan loanRequest) {
-        try {
-
-            amqMessageProducer.sendLoanApplicationMessage(loanRequest.getCustomerNumber(), loanRequest.getAmount());
-            return ResponseEntity.ok("Loan request submitted successfully.");
-        } catch (Exception e) {
-            // Handle exceptions (e.g., logging, error response)
-            System.err.println("Error submitting loan request: " + e.getMessage());
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error submitting loan request.");
-        }
+    @PostMapping("/subscribe")
+    public ResponseObject createUser(@RequestBody Customer customer) {
+        return userService.subscribeCustomer(customer);
     }
 
+    @GetMapping ("/allUsers")
+    public List<Customer> getUsers() {
+        return userService.getAllCustomers();
+    }
+
+    @PostMapping("/request")
+    public ResponseEntity<ResponseObject> requestLoan(@RequestBody Loan loanRequest) {
+        return amqMessageProducer.sendLoanApplicationMessage(loanRequest);
+    }
 
     @GetMapping("/status/{customerNumber}")
-    public ResponseObject getLoanStatus(@PathVariable String customerNumber) {
-        ResponseObject loanStatus = loanApplicationService.getStatus(customerNumber);
-        return ResponseEntity.ok().body(loanStatus).getBody();
+    public ResponseEntity<?> getLoanStatus(@PathVariable String customerNumber) {
+        return loanService.getStatus(customerNumber);
     }
 }
