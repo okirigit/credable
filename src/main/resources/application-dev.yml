@@ -1,11 +1,4 @@
 # spring boot management server instance properties
-info:
-  app:
-    name: credable-interview
-    description: This service will orchastrate traffic between LMS, CBS and Mobile Banking and other channels
-    version: 1.0.0
-    engineName: credable-interview
-    
 management:
   server:
     port: 8080
@@ -18,6 +11,12 @@ server:
   port: 8080
      
 spring:
+  info:
+    app:
+      name: credable-interview
+      description: This service will orchastrate traffic between LMS, CBS and Mobile Banking and other channels
+      version: 1.0.0
+      engineName: credable-interview
   activemq:
     packages:
       trust-all: true
@@ -57,9 +56,9 @@ scoring:
     baseurl : https://credable.free.beeceptor.com/
     create-client: createClient
     url: http://102.220.169.7
-    name: "OkiriGeorge cradable"
-    username: george
-    password: george123
+    name: "Okiri George cradable"
+    username: "george"
+    password: "george123"
 
 cbs:
   auth:

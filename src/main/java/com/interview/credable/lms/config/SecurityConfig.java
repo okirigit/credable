@@ -47,7 +47,6 @@ public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
                 .username(username)
                 .password(password)
                 .build();
-
         return new InMemoryUserDetailsManager(user);
     }
 }

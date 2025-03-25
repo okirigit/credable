@@ -11,8 +11,6 @@ public class ScoringServiceImpl implements ScoringService {
 
     private final ScoringServiceClient scoringServiceClient;
 
-
-
     // Retry configuration (you can externalize these)
     private static final int MAX_RETRIES = 3;
     private static final long RETRY_DELAY_MS = 2000; // 2 seconds

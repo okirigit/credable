@@ -82,19 +82,16 @@ public class ScoringServiceClient {
 
         String url = baseUrl + createClientUrl; // Assuming createClientUrl contains the relative path
 
-        // 2. Set Headers
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON); // Set content type to JSON
 
-        // 3. Create Request Payload (using a DTO)
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON); // Set content type to JSO
+
         ClientRegistrationRequest request = new ClientRegistrationRequest();
         request.setUrl(serviceUrl);
         request.setName(serviceName);
         request.setUsername(serviceUsername);
         request.setPassword(servicePassword);
-
         HttpEntity<ClientRegistrationRequest> entity = new HttpEntity<>(request, headers);
-
          try {
             ResponseEntity<String> response = restTemplate.exchange(
                     url,
@@ -102,24 +99,18 @@ public class ScoringServiceClient {
                     entity,
                     String.class // Assuming you have a ClientRegistrationResponse DTO
             );
-
-
             if (response.getStatusCode().is2xxSuccessful()) {
                 log.info("Client registration response: {}", response);
-
                 ClientRegistrationResponse registrationResponse = objectMapper.convertValue(response, ClientRegistrationResponse.class);
                 ckientToken.put("token",registrationResponse.getToken());
                 ckientToken.put("status","success");
                 ckientToken.put("username",registrationResponse.getUsername());
                 ckientToken.put("password",registrationResponse.getPassword());
-
                 log.info("Client registered successfully. Token: {}",registrationResponse.getToken() );
             } else {
                log.info("Error registering client: {}" , response.getStatusCode());
-
             }
         } catch (Exception e) {
-
             log.info("Exception during client registration: {}" , e.getMessage());
 
               }

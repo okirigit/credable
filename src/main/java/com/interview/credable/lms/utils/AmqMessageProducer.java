@@ -43,7 +43,6 @@ public class AmqMessageProducer {
     public ResponseEntity<ResponseObject> sendLoanApplicationMessage(Loan loan) {
         ResponseObject responseObject = new ResponseObject();
         ResponseEntity<ResponseObject> responseEntity ;
-
         Optional<Loan> optionalLoan = loansRepository.findLoansByCustomerNumberAndStatus(loan.getCustomerNumber(),"PENDING");
         if(optionalLoan.isPresent()) {
             ResponseObject resp = new ResponseObject();

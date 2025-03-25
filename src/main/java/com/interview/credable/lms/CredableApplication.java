@@ -38,7 +38,7 @@ public class CredableApplication {
 	@PostConstruct
 	public void registerClient() {
 		try {
-			log.info("Registering client:::::::::::::...");
+			log.info("Registering client::::::::::::: ");
 			scoringServiceClient.createClient();
 		} catch (Exception e) {
 			System.err.println("Error registering client: " + e.getMessage());

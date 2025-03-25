@@ -42,11 +42,6 @@ public class LoansController {
         return userService.subscribeCustomer(customer);
     }
 
-    @GetMapping ("/allUsers")
-    public List<Customer> getUsers() {
-        return userService.getAllCustomers();
-    }
-
     @PostMapping("/request")
     public ResponseEntity<ResponseObject> requestLoan(@RequestBody Loan loanRequest) {
         return amqMessageProducer.sendLoanApplicationMessage(loanRequest);

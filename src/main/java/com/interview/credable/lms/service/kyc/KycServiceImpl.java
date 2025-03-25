@@ -43,10 +43,7 @@ public class KycServiceImpl implements KycService {
             return resp.getCustomer();
         } catch (Exception e) {
             log.info("Error getting customer details {}",e.getMessage());
-            e.printStackTrace();
-            // Handle exceptions appropriately (log, throw, etc.)
-           return null; // Or throw an exception if that's more suitable
+           return null;
         }
-
     }
 }

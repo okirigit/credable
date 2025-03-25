@@ -23,10 +23,6 @@ public class LoanService {
         this.loansRepository = loansRepository;
         this.amqMessageProducer = amqMessageProducer;
     }
-    public List<Loan> getAllLoans() {
-        return loansRepository.findAll();
-    }
-
 
     public ResponseObject processLoanRequest(Loan loan) {
         ResponseObject resp = new ResponseObject();

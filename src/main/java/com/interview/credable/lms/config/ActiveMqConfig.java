@@ -1,11 +1,10 @@
 package com.interview.credable.lms.config;
 
-import java.util.Arrays;
 
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import jakarta.jms.ConnectionFactory;
+
 import org.apache.activemq.ActiveMQConnectionFactory;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -18,7 +17,6 @@ import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.support.converter.MappingJackson2MessageConverter;
 import org.springframework.jms.support.converter.MessageConverter;
 import org.springframework.jms.support.converter.MessageType;
-import org.springframework.jms.connection.ConnectionFactoryUtils;
 
   
   @EnableJms

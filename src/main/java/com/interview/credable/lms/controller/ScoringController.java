@@ -29,6 +29,8 @@ public class ScoringController {
     }
 
 
+    //KYC API for the scroring engine to fetch data from
+
     @GetMapping("/kyc")
     public ResponseEntity<?> getCustomerKyc(@RequestParam(value = "customerNumber")  String customerNumber) {
         ResponseObject resp = new ResponseObject();
@@ -59,6 +61,7 @@ public class ScoringController {
      * @return A ResponseEntity containing the TransactionsResponse.
      */
 
+    //transactions Data API
     @GetMapping("/transactions")
     public ResponseEntity<?> getCustomerTransactions(@RequestParam(value = "customerNumber", required = true)  String customerNumber) {
         try {

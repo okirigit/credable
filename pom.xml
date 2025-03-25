@@ -27,7 +27,7 @@
 		<url/>
 	</scm>
 	<properties>
-		<java.version>23</java.version>
+		<java.version>17</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -136,37 +136,6 @@
 			<plugin>
 				<groupId>org.apache.cxf</groupId>
 				<artifactId>cxf-codegen-plugin</artifactId>
-				<version>4.1.1</version> <executions>
-				<execution>
-					<id>generate-kyc-client</id>
-					<phase>generate-sources</phase>
-					<goals>
-						<goal>wsdl2java</goal>
-					</goals>
-					<configuration>
-						<input>${basedir}/src/main/resources/wsdl/customerWsdl.wsdl</input>
-						<outputDirectory>${project.build.directory}/generated-sources/cxf</outputDirectory>
-						<packageName>com.credable.lms.infrastructure.cbs.kyc</packageName>
-					</configuration>
-				</execution>
-				<execution>
-					<id>generate-transaction-client</id>
-					<phase>generate-sources</phase>
-					<goals>
-						<goal>wsdl2java</goal>
-					</goals>
-					<configuration>
-						<input>${basedir}/src/main/resources/wsdl/transactionWsdl.wsdl</input>
-						<outputDirectory>${project.build.directory}/generated-sources/cxf</outputDirectory>
-						<packageName>com.credable.lms.infrastructure.cbs.transaction</packageName>
-					</configuration>
-				</execution>
-			</executions>
-			</plugin>
-
-			<plugin>
-				<groupId>org.apache.cxf</groupId>
-				<artifactId>cxf-codegen-plugin</artifactId>
 				<version>4.1.1</version>  <executions>
 				<execution>
 					<id>generate-kyc-client</id>
@@ -175,9 +144,7 @@
 						<goal>wsdl2java</goal>
 					</goals>
 					<configuration>
-						<input>${basedir}/src/main/resources/wsdl/customerWsdl.wsdl</input>
-						<outputDirectory>${project.build.directory}/generated-sources/cxf</outputDirectory>
-						<packageName>com.credable.lms.infrastructure.cbs.kyc</packageName>
+
 					</configuration>
 				</execution>
 				<execution>
@@ -187,10 +154,7 @@
 						<goal>wsdl2java</goal>
 					</goals>
 					<configuration>
-						<input>${basedir}/src/main/resources/wsdl/transactionWsdl.wsdl</input>
-						<outputDirectory>${project.build.directory}/generated-sources/cxf</outputDirectory>
-						<packageName>com.credable.lms.infrastructure.cbs.transaction</packageName>
-					</configuration>
+						</configuration>
 				</execution>
 			</executions>
 			</plugin>
@@ -200,10 +164,9 @@
 				<configuration>
 					<source>21</source>
 					<target>21</target>
-					<compilerArgs>--enable-preview</compilerArgs>
+
 				</configuration>
 			</plugin>
 		</plugins>
 	</build>
-
 </project>
